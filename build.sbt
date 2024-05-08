@@ -21,6 +21,8 @@ lazy val crypto = (project in file("."))
     cryptoCore.js,
     cryptoBouncyCastleProvider.jvm,
     cryptoBouncyCastleProvider.js,
+    cryptoBouncyCastlePkix.jvm,
+    cryptoBouncyCastlePkix.js,
   )
   .settings(commonSettings)
   .settings(
@@ -32,6 +34,7 @@ lazy val cryptoCore = (crossProject(JSPlatform, JVMPlatform) in file("crypto-cor
   .settings(
     name := "crypto-core",
     libraryDependencies ++= Seq(
+      "org.typelevel" %%% "cats-effect" % catsEffectVersion,
     ),
   )
 
@@ -41,7 +44,6 @@ lazy val cryptoBouncyCastleProvider = (crossProject(JSPlatform, JVMPlatform) in 
   .settings(
     name := "crypto-bcprov",
     libraryDependencies ++= Seq(
-      "org.typelevel" %%% "cats-effect" % catsEffectVersion,
     ),
   )
   .jvmSettings(
@@ -50,7 +52,23 @@ lazy val cryptoBouncyCastleProvider = (crossProject(JSPlatform, JVMPlatform) in 
     ),
   )
 
-val catsEffectVersion = "3.5.1"
+lazy val cryptoBouncyCastlePkix = (crossProject(JSPlatform, JVMPlatform) in file("crypto-bcpkix"))
+  .settings(commonSettings)
+  .settings(
+    name := "crypto-bcpkix",
+    libraryDependencies ++= Seq(
+      "co.fs2" %%% "fs2-io" % fs2Version,
+    ),
+  )
+  .jvmSettings(
+    libraryDependencies ++= Seq(
+      bouncyCastlePkix,
+    ),
+  )
+
+val catsEffectVersion = "3.5.4"
+val fs2Version = "3.10.2"
 val bouncyCastleVersion = "1.78.1"
 
 val bouncyCastleProvider = "org.bouncycastle" % "bcprov-jdk18on" % bouncyCastleVersion
+val bouncyCastlePkix = "org.bouncycastle" % "bcpkix-jdk18on" % bouncyCastleVersion
