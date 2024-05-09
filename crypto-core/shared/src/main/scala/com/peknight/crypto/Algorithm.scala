@@ -15,6 +15,6 @@ object Algorithm:
     case ECDSA extends Asymmetric("ECDSA")
   end Asymmetric
   enum Hashing(val algorithm: String) extends Algorithm:
-    case SHA_1 extends Hashing("SHA-1")
+    case `SHA-1` extends Hashing("SHA-1")
   end Hashing
 end Algorithm
