@@ -1,8 +1,8 @@
 package com.peknight.crypto.algorithm.cipher
 
-import com.peknight.crypto.algorithm.Algorithm
-import com.peknight.crypto.algorithm.cipher.mode.{Mode, NONE}
+import com.peknight.crypto.algorithm.cipher.mode.Mode
 import com.peknight.crypto.algorithm.cipher.padding.{NoPadding, Padding}
+import com.peknight.crypto.algorithm.{Algorithm, NONE}
 
 trait Cipher extends Algorithm with Transformation:
   def cipherForTransformation: Cipher = this

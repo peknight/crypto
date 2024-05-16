@@ -1,9 +1,9 @@
 package com.peknight.crypto.algorithm.cipher
 
-import com.peknight.crypto.algorithm.Algorithm
 import com.peknight.crypto.algorithm.cipher.asymmetric.RSA
-import com.peknight.crypto.algorithm.cipher.mode.{Mode, NONE}
+import com.peknight.crypto.algorithm.cipher.mode.Mode
 import com.peknight.crypto.algorithm.cipher.padding.{NoPadding, OAEP, Padding}
+import com.peknight.crypto.algorithm.{Algorithm, NONE}
 
 trait Transformation extends Algorithm:
   def cipherForTransformation: Cipher
