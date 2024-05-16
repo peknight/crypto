@@ -10,7 +10,7 @@ import com.peknight.crypto.algorithm.random.PRF
  */
 trait PBE extends Cipher
 object PBE extends PBE:
-  val algorithm: String = "OBE"
+  val algorithm: String = "PBE"
   def withDigestAndEncryption(digest: Digest, encryption: Cipher): PBEWithDigestAndEncryption =
     PBEWithDigestAndEncryption(digest, encryption)
 
