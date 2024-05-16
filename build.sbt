@@ -19,6 +19,8 @@ lazy val crypto = (project in file("."))
   .aggregate(
     cryptoCore.jvm,
     cryptoCore.js,
+    cryptoEffect.jvm,
+    cryptoEffect.js,
     cryptoBouncyCastleProvider.jvm,
     cryptoBouncyCastleProvider.js,
     cryptoBouncyCastlePkix.jvm,
@@ -34,6 +36,15 @@ lazy val cryptoCore = (crossProject(JSPlatform, JVMPlatform) in file("crypto-cor
   .settings(
     name := "crypto-core",
     libraryDependencies ++= Seq(
+    ),
+  )
+
+lazy val cryptoEffect = (crossProject(JSPlatform, JVMPlatform) in file("crypto-effect"))
+  .dependsOn(cryptoCore)
+  .settings(commonSettings)
+  .settings(
+    name := "crypto-effect",
+    libraryDependencies ++= Seq(
       "org.typelevel" %%% "cats-effect" % catsEffectVersion,
     ),
   )
@@ -44,6 +55,7 @@ lazy val cryptoBouncyCastleProvider = (crossProject(JSPlatform, JVMPlatform) in 
   .settings(
     name := "crypto-bcprov",
     libraryDependencies ++= Seq(
+      "org.typelevel" %%% "cats-effect" % catsEffectVersion,
     ),
   )
   .jvmSettings(

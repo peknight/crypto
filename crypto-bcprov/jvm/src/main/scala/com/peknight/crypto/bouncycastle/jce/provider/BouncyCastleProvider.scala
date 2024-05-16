@@ -1,7 +1,7 @@
 package com.peknight.crypto.bouncycastle.jce.provider
 
 import cats.effect.Sync
-import com.peknight.crypto.Provider
+import com.peknight.crypto.provider.Provider
 import org.bouncycastle.jce.provider.BouncyCastleProvider as JBouncyCastleProvider
 
 object BouncyCastleProvider extends Provider:
