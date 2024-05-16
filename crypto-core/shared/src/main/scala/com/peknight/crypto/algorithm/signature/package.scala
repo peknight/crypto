@@ -3,7 +3,8 @@ package com.peknight.crypto.algorithm
 import com.peknight.crypto.algorithm.cipher.asymmetric.RSA
 import com.peknight.crypto.algorithm.digest.*
 import com.peknight.crypto.algorithm.format.P1363
-import com.peknight.crypto.algorithm.ssa.{DSA, ECDSA}
+import com.peknight.crypto.algorithm.ssa.{DSA, ECDSA, RSA_PSS}
+import com.peknight.crypto.algorithm.cipher.mgf.MGF1
 
 package object signature:
   val NONEwithRSA: DigestWithEncryption = NONE.withEncryption(RSA)
@@ -64,4 +65,8 @@ package object signature:
   val `SHA3-256withECDSAinP1363Format`: DigestWithEncryption = `SHA3-256withECDSA`.format(Some(P1363))
   val `SHA3-384withECDSAinP1363Format`: DigestWithEncryption = `SHA3-384withECDSA`.format(Some(P1363))
   val `SHA3-512withECDSAinP1363Format`: DigestWithEncryption = `SHA3-512withECDSA`.format(Some(P1363))
+
+  val SHA256withRSA_PSSandMGF1: DigestWithEncryption = `SHA-256`.withEncryption(RSA_PSS).mgf(Some(MGF1))
+  val SHA384withRSA_PSSandMGF1: DigestWithEncryption = `SHA-384`.withEncryption(RSA_PSS).mgf(Some(MGF1))
+  val SHA512withRSA_PSSandMGF1: DigestWithEncryption = `SHA-512`.withEncryption(RSA_PSS).mgf(Some(MGF1))
 end signature
