@@ -7,4 +7,3 @@ trait RSA extends Asymmetric
 object RSA extends RSA:
   val algorithm: String = "RSA"
 end RSA
-

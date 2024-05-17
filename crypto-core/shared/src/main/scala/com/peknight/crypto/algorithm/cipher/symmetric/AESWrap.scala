@@ -8,7 +8,9 @@ trait AESWrap extends AES:
   override val cipherForTransformation: Cipher = AES
   override val mode: Mode = KW
   override val padding: Padding = NoPadding
+  override def abbreviation: String = s"A${keySize}KW"
 end AESWrap
 object AESWrap extends AESWrap:
+  val keySize: Int = 128
   val algorithm: String = "AESWrap"
 end AESWrap

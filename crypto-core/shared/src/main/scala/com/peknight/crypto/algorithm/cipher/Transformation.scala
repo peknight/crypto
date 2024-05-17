@@ -1,8 +1,11 @@
 package com.peknight.crypto.algorithm.cipher
 
 import com.peknight.crypto.algorithm.cipher.asymmetric.RSA
-import com.peknight.crypto.algorithm.cipher.mode.Mode
-import com.peknight.crypto.algorithm.cipher.padding.{NoPadding, OAEP, Padding}
+import com.peknight.crypto.algorithm.cipher.mgf.MGF1
+import com.peknight.crypto.algorithm.cipher.mode.{GCM, Mode}
+import com.peknight.crypto.algorithm.cipher.padding.{NoPadding, OAEP, OAEPWithDigestAndMGFPadding, Padding}
+import com.peknight.crypto.algorithm.cipher.symmetric.AES
+import com.peknight.crypto.algorithm.digest.`SHA-256`
 import com.peknight.crypto.algorithm.{Algorithm, NONE}
 
 trait Transformation extends Algorithm:
@@ -13,8 +16,10 @@ trait Transformation extends Algorithm:
   def /(padding: Padding): Transformation
   def transformation: String = s"${cipherForTransformation.abbreviation}/${mode.mode}/${padding.padding}"
   override def abbreviation: String =
-    (cipherForTransformation, padding) match
-      case (r: RSA, p: OAEP) => "RSA-OAEP"
+    (cipherForTransformation, mode, padding) match
+      case (c: AES, GCM, _) => s"A${c.keySize}GCMKW"
+      case (c: RSA, _, p: OAEPWithDigestAndMGFPadding) if p.digest == `SHA-256` && p.mgf == MGF1 => "RSA-OAEP-256"
+      case (c: RSA, _, p: OAEP) => "RSA-OAEP"
       case _ => super.abbreviation
 end Transformation
 object Transformation:

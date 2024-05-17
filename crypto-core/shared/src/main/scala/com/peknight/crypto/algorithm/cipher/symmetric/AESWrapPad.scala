@@ -10,5 +10,6 @@ trait AESWrapPad extends AES:
   override val padding: Padding = NoPadding
 end AESWrapPad
 object AESWrapPad extends AESWrapPad:
+  val keySize: Int = 128
   val algorithm: String = "AESWrapPad"
 end AESWrapPad
