@@ -36,6 +36,8 @@ lazy val cryptoCore = (crossProject(JSPlatform, JVMPlatform) in file("crypto-cor
   .settings(
     name := "crypto-core",
     libraryDependencies ++= Seq(
+      "com.peknight" %%% "codec-core" % pekCodecVersion,
+      "org.scodec" %% "scodec-bits" % scodecVersion,
     ),
   )
 
@@ -81,6 +83,9 @@ lazy val cryptoBouncyCastlePkix = (crossProject(JSPlatform, JVMPlatform) in file
 val catsEffectVersion = "3.5.4"
 val fs2Version = "3.10.2"
 val bouncyCastleVersion = "1.78.1"
+val scodecVersion = "1.2.0"
+val pekVersion = "0.1.0-SNAPSHOT"
+val pekCodecVersion = "0.1.0-SNAPSHOT"
 
 val bouncyCastleProvider = "org.bouncycastle" % "bcprov-jdk18on" % bouncyCastleVersion
 val bouncyCastlePkix = "org.bouncycastle" % "bcpkix-jdk18on" % bouncyCastleVersion
