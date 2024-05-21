@@ -2,7 +2,6 @@ package com.peknight.crypto.algorithm.pbe
 
 import com.peknight.crypto.algorithm.cipher.Cipher
 import com.peknight.crypto.algorithm.digest.Digest
-import com.peknight.crypto.algorithm.mac.MAC
 import com.peknight.crypto.algorithm.random.PRF
 
 /**
