@@ -1,4 +1,4 @@
-package com.peknight.crypto.codec.text.bases
+package com.peknight.crypto.codec.bases
 
 import scodec.bits.Bases.Base64Alphabet
 import scodec.bits.ByteVector

@@ -1,4 +1,4 @@
-package com.peknight.crypto.codec.text.bases
+package com.peknight.crypto.codec.bases
 
 import cats.Applicative
 import cats.syntax.functor.*
