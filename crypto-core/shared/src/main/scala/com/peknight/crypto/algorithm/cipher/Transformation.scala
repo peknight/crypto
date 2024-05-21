@@ -2,7 +2,7 @@ package com.peknight.crypto.algorithm.cipher
 
 import com.peknight.crypto.algorithm.cipher.asymmetric.RSA
 import com.peknight.crypto.algorithm.cipher.mgf.MGF1
-import com.peknight.crypto.algorithm.cipher.mode.{GCM, GCMKW, Mode}
+import com.peknight.crypto.algorithm.cipher.mode.{CBC, GCM, GCMKW, Mode}
 import com.peknight.crypto.algorithm.cipher.padding.{NoPadding, OAEP, OAEPWithDigestAndMGFPadding, Padding}
 import com.peknight.crypto.algorithm.cipher.symmetric.AES
 import com.peknight.crypto.algorithm.digest.`SHA-256`
@@ -19,6 +19,7 @@ trait Transformation extends Algorithm:
     (cipherForTransformation, mode, padding) match
       case (c: AES, GCMKW, _) => s"A${c.keySize}GCMKW"
       case (c: AES, GCM, _) => s"A${c.keySize}GCM"
+      case (c: AES, CBC, _) => s"A${c.keySize}CBC"
       case (c: RSA, _, p: OAEPWithDigestAndMGFPadding) if p.digest == `SHA-256` && p.mgf == MGF1 => "RSA-OAEP-256"
       case (c: RSA, _, p: OAEP) => "RSA-OAEP"
       case _ => super.abbreviation

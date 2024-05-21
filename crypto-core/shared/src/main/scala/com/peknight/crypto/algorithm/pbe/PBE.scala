@@ -2,7 +2,7 @@ package com.peknight.crypto.algorithm.pbe
 
 import com.peknight.crypto.algorithm.cipher.Cipher
 import com.peknight.crypto.algorithm.digest.Digest
-import com.peknight.crypto.algorithm.mac.{MAC, PBEWithMAC}
+import com.peknight.crypto.algorithm.mac.MAC
 import com.peknight.crypto.algorithm.random.PRF
 
 /**
@@ -16,7 +16,5 @@ object PBE extends PBE:
 
   def withPRFAndEncryption(prf: PRF, encryption: Cipher): PBEWithPRFAndEncryption =
     PBEWithPRFAndEncryption(prf, encryption)
-
-  def withMAC(mac: MAC): PBEWithMAC = PBEWithMAC(mac)
 end PBE
 
