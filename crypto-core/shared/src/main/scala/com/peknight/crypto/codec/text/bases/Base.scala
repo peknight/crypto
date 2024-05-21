@@ -1,5 +1,7 @@
 package com.peknight.crypto.codec.text.bases
 
+import cats.Applicative
+import cats.syntax.functor.*
 import com.peknight.codec.error.DecodingFailure
 import scodec.bits.Bases.Alphabet
 import scodec.bits.ByteVector
@@ -7,6 +9,6 @@ import scodec.bits.ByteVector
 trait Base:
   def value: String
   def alphabet: Alphabet
-  def decode: Either[DecodingFailure, ByteVector]
-  def unsafeDecode: ByteVector = decode.fold(throw _, identity)
+  def decode[F[_]: Applicative]: F[Either[DecodingFailure, ByteVector]]
+  def unsafeDecode[F[_]: Applicative]: F[ByteVector] = decode[F].map(_.fold(throw _, identity))
 end Base
