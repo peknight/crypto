@@ -6,6 +6,7 @@ import com.peknight.crypto.algorithm.cipher.mode.{CBC, GCM, GCMKW, Mode}
 import com.peknight.crypto.algorithm.cipher.padding.{NoPadding, OAEP, OAEPWithDigestAndMGFPadding, Padding}
 import com.peknight.crypto.algorithm.cipher.symmetric.AES
 import com.peknight.crypto.algorithm.digest.`SHA-256`
+import com.peknight.crypto.algorithm.mac.MAC
 import com.peknight.crypto.algorithm.{Algorithm, NONE}
 
 trait Transformation extends Algorithm:
@@ -15,6 +16,7 @@ trait Transformation extends Algorithm:
   def /(mode: Mode): Transformation
   def /(padding: Padding): Transformation
   def transformation: String = s"${cipherForTransformation.abbreviation}/${mode.mode}/${padding.padding}"
+  def withMAC(mac: MAC): EncryptionWithMAC = EncryptionWithMAC(this, mac)
   override def abbreviation: String =
     (cipherForTransformation, mode, padding) match
       case (c: AES, GCMKW, _) => s"A${c.keySize}GCMKW"
