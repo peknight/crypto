@@ -1,5 +1,6 @@
 package com.peknight.crypto.algorithm.ecc.brainpool
 
+import com.peknight.crypto.algorithm.ecc.EllipticCurve
 import com.peknight.crypto.algorithm.ecc.curve.Random
 import com.peknight.crypto.algorithm.ecc.field.Prime
 
