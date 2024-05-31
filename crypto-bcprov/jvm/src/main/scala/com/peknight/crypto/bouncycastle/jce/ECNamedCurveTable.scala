@@ -1,7 +1,7 @@
 package com.peknight.crypto.bouncycastle.jce
 
 import cats.effect.Sync
-import com.peknight.crypto.algorithm.ecc.EllipticCurve
+import com.peknight.crypto.ecc.EllipticCurve
 import org.bouncycastle.jce.ECNamedCurveTable as JECNamedCurveTable
 import org.bouncycastle.jce.spec.ECNamedCurveParameterSpec
 
